@@ -35,16 +35,16 @@ spec:
               value: ":9001"
             - name: MINIO_CONSOLE_SUBPATH
               value: "/minio"
-            # - name: MINIO_BROWSER
-            #   value: "on"
+            - name: MINIO_BROWSER
+              value: "on"
             - name: MINIO_BROWSER_REDIRECT_URL
               value: "https://dev.policiacivil.ce.gov.br/minio"
-            # - name: MINIO_DOMAIN
-            #   value: "dev.policiacivil.ce.gov.br"
+            - name: MINIO_DOMAIN
+              value: "dev.policiacivil.ce.gov.br"
             # - name: MINIO_API_PATH
             #   value: "/minio/read"
-            # - name: MINIO_SERVER_URL
-            #   value: "https://dev.policiacivil.ce.gov.br"
+            - name: MINIO_SERVER_URL
+              value: "https://api.policiacivil.ce.gov.br"
             # - name: MINIO_SERVER_ADDRESS
             #   value: "9000"
             # - name: MINIO_SERVER_SUBPATH

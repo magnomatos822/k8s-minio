@@ -23,26 +23,24 @@ spec:
                   number: 80
 
 ---
-# https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
-
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: minio-read-ingress
-#   annotations:
-#     kubernetes.io/ingress.class: nginx
-#     nginx.ingress.kubernetes.io/rewrite-target: /minio/$2
-#     # nginx.ingress.kubernetes.io/proxy-body-size: "0"
-# spec:
-#   rules:
-#     - host: dev.policiacivil.ce.gov.br
-#       http:
-#         paths:
-#           # - path: /
-#           - path: /minio(/|$)(.*)
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: minio-read-service # Nome do serviço Minio
-#                 port:
-#                   number: 9000 # Porta do serviço Minio
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-read-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # nginx.ingress.kubernetes.io/proxy-body-size: "0"
+spec:
+  rules:
+    - host: api.policiacivil.ce.gov.br
+      http:
+        paths:
+          - path: /
+            # - path: /minio(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-read-service # Nome do serviço Minio
+                port:
+                  number: 9000 # Porta do serviço Minio
