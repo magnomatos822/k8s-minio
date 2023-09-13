@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+spec:
+  selector:
+    matchLabels:
+      app: minio
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: minio-pvc-claim
+      containers:
+        - name: minio
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          image: quay.io/minio/minio:latest
+          args:
+            - server
+            - /data
+          env:
+            - name: MINIO_ROOT_USER
+              value: "admin"
+            - name: MINIO_ROOT_PASSWORD
+              value: "TGF@bxh4uqe1zvf0hqk"
+            - name: MINIO_CONSOLE_ADDRESS
+              value: ":9001"
+            - name: MINIO_CONSOLE_SUBPATH
+              value: "/minio"
+            # - name: MINIO_BROWSER
+            #   value: "on"
+            - name: MINIO_BROWSER_REDIRECT_URL
+              value: "https://dev.policiacivil.ce.gov.br/minio"
+            # - name: MINIO_DOMAIN
+            #   value: "dev.policiacivil.ce.gov.br"
+            # - name: MINIO_API_PATH
+            #   value: "/minio/read"
+            # - name: MINIO_SERVER_URL
+            #   value: "https://dev.policiacivil.ce.gov.br"
+            # - name: MINIO_SERVER_ADDRESS
+            #   value: "9000"
+            # - name: MINIO_SERVER_SUBPATH
+            #   value: "/minio/read"
+          ports:
+            - containerPort: 9000
+            - containerPort: 9001
+          readinessProbe:
+            httpGet:
+              path: /minio/health/ready
+              port: 9000
+            initialDelaySeconds: 120
+            periodSeconds: 20
+          livenessProbe:
+            httpGet:
+              path: /minio/health/live
+              port: 9000
+            initialDelaySeconds: 120
+            periodSeconds: 20
