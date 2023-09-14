@@ -40,15 +40,9 @@ spec:
             - name: MINIO_BROWSER_REDIRECT_URL
               value: "https://dev.policiacivil.ce.gov.br/minio"
             - name: MINIO_DOMAIN
-              value: "dev.policiacivil.ce.gov.br"
-            # - name: MINIO_API_PATH
-            #   value: "/minio/read"
+              value: "dev.policiacivil.ce.gov.br/minio"
             - name: MINIO_SERVER_URL
               value: "https://api.policiacivil.ce.gov.br"
-            # - name: MINIO_SERVER_ADDRESS
-            #   value: "9000"
-            # - name: MINIO_SERVER_SUBPATH
-            #   value: "/minio/read"
           ports:
             - containerPort: 9000
             - containerPort: 9001
