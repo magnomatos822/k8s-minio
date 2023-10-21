@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minio
+  labels:
+    app: minio
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -43,6 +46,13 @@ spec:
               value: "dev.policiacivil.ce.gov.br/minio"
             - name: MINIO_SERVER_URL
               value: "https://api.policiacivil.ce.gov.br"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
           ports:
             - containerPort: 9000
             - containerPort: 9001

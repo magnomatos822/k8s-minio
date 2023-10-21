@@ -3,8 +3,9 @@ kind: Service
 metadata:
   # This name uniquely identifies the service
   name: minio-service
+  namespace: default
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - name: http
       port: 80
@@ -18,8 +19,9 @@ kind: Service
 metadata:
   # This name uniquely identifies the service
   name: minio-read-service
+  namespace: default
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - name: http
       port: 9000

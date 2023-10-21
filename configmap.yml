@@ -1,0 +1,9 @@
+# Configmap from minio configmap.yml
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: minio-config
+  namespace: default
+data:
+  key: default

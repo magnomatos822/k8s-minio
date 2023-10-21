@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "kubernetes": "*.yaml, *yml",
+        "kubernetes://schema/v1@service+v1@service": "file:///home/pcce/Documentos/projetos-pessoal/minio-object-storage/Minio-svc.yml"
+    }
+}
